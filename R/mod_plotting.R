@@ -12,10 +12,18 @@ mod_plotting_ui <- function(id){
   tagList(
     sidebarLayout(
       sidebarPanel(
-        "peptide_sequence"
+        textAreaInput(
+          inputId = ns("peptide"),
+          label = "Peptide sequence",
+          width = 300,
+          height = 100,
+          placeholder = "Insert peptide sequence"
+        )
       ),
       mainPanel(
-        "plot"
+        plotOutput(
+          outputId = ns("abundance")
+        )
       )
     )
   )
@@ -26,6 +34,16 @@ mod_plotting_ui <- function(id){
 #' @noRd
 mod_plotting_server <- function(id){
   moduleServer( id, function(input, output, session){
+
+    output$abundance <- renderPlot({
+      if(input$peptide == ""){
+        NULL
+      } else{
+        input$peptide |>
+          enigma::plot_aa_counts() +
+          ggplot2::theme(legend.position = "none")
+      }
+    })
     ns <- session$ns
 
   })
