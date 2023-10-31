@@ -1,12 +1,28 @@
 Package: enigmadogma
-Title: An Amazing Shiny App
-Version: 0.0.0.9000
-Authors@R: 
-    person(given = "firstname",
-           family = "lastname",
-           role = c("aut", "cre"),
-           email = "your@email.com")
-Description: What the package does (one paragraph).
+Title: enigma
+Version: 0.1.0
+Authors@R:
+  c(person(given = "Carlos",
+           family = "de Santiago",
+           role = c("aut", "cre"), # There must be a "cre", but there can only be one
+           email = "s222766@student.dtu.dk"), 
+    person(given = "Ana",
+           family = "Pastor",
+           role = "aut",
+           email = "s222761@student.dtu.dk"),
+    person(given = "Laura",
+           family = "Figueiredo",
+           role = "aut",
+           email = "s222797@student.dtu.dk"), 
+    person(given = "Monika",
+           family = "Karolina",
+           role = "aut",
+           email = "s223203@student.dtu.dk"),
+    person(given = "Amanda",
+           family = "Jimenez",
+           role = "aut",
+           email = "s233150@student.dtu.dk"))
+Description: Central dogma of molecular biology utilities
 License: What license is it under?
 Imports: 
     config,
