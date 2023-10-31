@@ -1,7 +1,7 @@
 Package: enigmadogma
 Title: enigma
 Version: 0.1.0
-Authors@R:c(
+Authors@R: c(
     person("Carlos", "de Santiago", , "s222766@student.dtu.dk", role = c("aut", "cre")),
     person("Ana", "Pastor", , "s222761@student.dtu.dk", role = "aut"),
     person("Laura", "Figueiredo", , "s222797@student.dtu.dk", role = "aut"),
