@@ -25,7 +25,24 @@ mod_plotting_ui <- function(id){
       ),
       mainPanel(
         plotOutput(
-          outputId = ns("abundance")
+          outputId = ns("abundance"),
+          fluidRow(
+            column(8, shiny::uiOutput(ns("DNA"))),
+            column(4, shiny::numericInput(
+              inputId = ns("dna_length"),
+              value = 6000,
+              min = 3,
+              max = 100000,
+              step = 3,
+              label = "Random DNA length"
+            ),
+            shiny::actionButton(
+              inputId = ns("generate_dna"),
+              label = "Generate random DNA", style = "margin-top: 18px;"
+            ))
+          ),
+          shiny::verbatimTextOutput(outputId = ns("peptide")) |>
+            shiny::tagAppendAttributes(style = "white-space: pre-wrap;")
         )
       )
     )
