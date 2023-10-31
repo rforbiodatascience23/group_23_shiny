@@ -27,6 +27,7 @@ License: What license is it under?
 Imports: 
     config,
     golem,
+    pkgload,
     shiny
 Encoding: UTF-8
 LazyData: true
