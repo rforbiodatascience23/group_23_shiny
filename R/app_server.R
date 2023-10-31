@@ -6,4 +6,6 @@
 #' @noRd
 app_server <- function(input, output, session) {
   mod_plotting_server("plotting_1")
+  mod_script_server("script_1")
 }
+

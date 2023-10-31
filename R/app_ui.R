@@ -13,10 +13,9 @@ app_ui <- function(request) {
       h1("enigmadogma"),
       tabsetPanel(
         tabPanel(title = "panel1",
-                 "script"),
+                 mod_script_ui("script_1")),
         tabPanel(title = "panel2",
-                 mod_plotting_ui("plotting_1"))
-      )
+                 mod_plotting_ui("plotting_1"))      )
     )
   )
 }
