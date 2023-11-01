@@ -10,9 +10,9 @@
 mod_plotting_ui <- function(id){
   ns <- NS(id)
   tagList(
-    sidebarLayout(
-      sidebarPanel(
-        textAreaInput(
+    shiny::sidebarLayout(
+      shiny::sidebarPanel(
+        shiny::textAreaInput(
           inputId = ns("peptide"),
           label = "Peptide sequence",
           width = 300,
@@ -20,8 +20,8 @@ mod_plotting_ui <- function(id){
           placeholder = "Insert peptide sequence"
         )
       ),
-      mainPanel(
-        plotOutput(
+      shiny::mainPanel(
+        shiny::plotOutput(
           outputId = ns("abundance"),
           fluidRow(
             column(8, shiny::uiOutput(ns("DNA"))),
@@ -53,7 +53,7 @@ mod_plotting_ui <- function(id){
 #' @import enigma
 mod_plotting_server <- function(id){
   moduleServer( id, function(input, output, session){
-
+    ns <- session$ns
     output$abundance <- renderPlot({
       if(input$peptide == ""){
         NULL
@@ -63,8 +63,6 @@ mod_plotting_server <- function(id){
           ggplot2::theme(legend.position = "none")
       }
     })
-    ns <- session$ns
-
   })
 }
 
