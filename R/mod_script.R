@@ -41,7 +41,6 @@ mod_script_server <- function(id){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
     dna <- reactiveVal()
-
     output$DNA <- renderUI({
       textAreaInput(
         inputId = ns("DNA"),
@@ -52,22 +51,20 @@ mod_script_server <- function(id){
         width = 600
       )
       })
-
-
       observeEvent(input$generate_dna, {
         dna(
-          enigma::generate_DNA_seq(input$seq_len)
+          enigma::generate_DNA_seq(input$dna_length)
         )
       })
 
       output$aminoacid_seq <- renderText({
         # Ensure input is not NULL and is longer than 2 characters
-        if(is.null(input$DNA_seq)){
+        if(is.null(input$DNA)){
           NULL
-        } else if(nchar(input$DNA_seq) < 3){
+        } else if(nchar(input$DNA) < 3){
           NULL
         } else{
-          input$DNA_seq |>
+          input$DNA |>
             toupper() |>
             enigma::transcribe() |>
             enigma::extracted_codons() |>
