@@ -24,7 +24,7 @@ mod_plotting_ui <- function(id){
         )
       ),
       shiny::mainPanel(
-        shiny:: plotOutput(
+        shiny::plotOutput(
           outputId = ns("abundance")
             )
         )
