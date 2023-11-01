@@ -2,13 +2,13 @@
 #'
 #' @description A shiny Module.
 #'
-#' @importFrom ggplot2 theme
-#' @import enigma
 #'
 #' @param id,input,output,session Internal parameters for {shiny}.
 #'
 #' @noRd
 #'
+#' @importFrom ggplot2 theme
+#' @import enigma
 #' @importFrom shiny NS tagList
 mod_plotting_ui <- function(id){
   ns <- NS(id)

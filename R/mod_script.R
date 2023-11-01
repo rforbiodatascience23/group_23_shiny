@@ -12,10 +12,24 @@ mod_script_ui <- function(id){
   tagList(
 
     fluidRow(
-      column(8, "DNA_sequence"),
-      column(4, "random_dna_length", "generate_dna_button")
+      column(8, shiny::uiOutput(ns("DNA"))),
+      column(4,
+             shiny::numericInput(
+               inputId = ns("dna_length"),
+               value = 6000,
+               min = 3,
+               max = 100000,
+               step = 3,
+               label = "Random DNA length"
+             ),
+             shiny::actionButton(
+               inputId = ns("generate_dna"),
+               label = "Generate random DNA", style = "margin-top: 18px;"
+             )
+             )
     ),
-    "peptide_sequence"
+    shiny::verbatimTextOutput(outputId = ns("peptide")) |>
+      shiny::tagAppendAttributes(style = "white-space: pre-wrap;")
 
   )
 }
@@ -37,6 +51,7 @@ mod_script_server <- function(id){
         height = 100,
         width = 600
       )
+      })
 
 
       observeEvent(input$generate_dna, {
@@ -62,8 +77,6 @@ mod_script_server <- function(id){
 
     })
 
-
-  })
 }
 
 ## To be copied in the UI
