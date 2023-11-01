@@ -2,6 +2,7 @@
 
 export(run_app)
 import(enigma)
+import(ggplot2)
 import(shiny)
 importFrom(ggplot2,theme)
 importFrom(golem,activate_js)

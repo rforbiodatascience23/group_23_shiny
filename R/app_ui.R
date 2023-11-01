@@ -12,9 +12,9 @@ app_ui <- function(request) {
     fluidPage(
       h1("enigmadogma"),
       tabsetPanel(
-        tabPanel(title = "panel1",
+        tabPanel(title = "Transcription",
                  mod_script_ui("script_1")),
-        tabPanel(title = "panel2",
+        tabPanel(title = "Plot",
                  mod_plotting_ui("plotting_1"))      )
     )
   )
