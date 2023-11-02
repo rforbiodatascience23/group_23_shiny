@@ -47,28 +47,27 @@ mod_script_server <- function(id){
         height = 100,
         width = 600
       )
-      })
-      observeEvent(input$generate_dna, {
-        dna(
-          enigma::generate_DNA_seq(input$dna_length)
-        )
-      })
-      output$peptide <- renderText({
-        # Ensure input is not NULL and is longer than 2 characters
-        if(is.null(input$DNA)){
-          NULL
-        } else if(nchar(input$DNA) < 3){
-          NULL
-        } else{
-          input$DNA |>
-            toupper() |>
-            enigma::transcribe() |>
-            enigma::extracted_codons() |>
-            enigma::codon_to_aa()
-        }
-      })
     })
-
+    output$peptide <- renderText({
+      # Ensure input is not NULL and is longer than 2 characters
+      if(is.null(input$DNA)){
+        NULL
+      } else if(nchar(input$DNA) < 3){
+        NULL
+      } else{
+        input$DNA |>
+          toupper() |>
+          enigma::transcribe() |>
+          enigma::extracted_codons() |>
+          enigma::codon_to_aa()
+      }
+    })
+    observeEvent(input$generate_dna, {
+      dna(
+        enigma::generate_DNA_seq(input$dna_length)
+      )
+    })
+  })
 }
 
 ## To be copied in the UI
