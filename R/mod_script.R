@@ -10,23 +10,20 @@
 mod_script_ui <- function(id){
   ns <- NS(id)
   tagList(
-
     fluidRow(
       column(8, shiny::uiOutput(ns("DNA"))),
-      column(4,
-             shiny::numericInput(
-               inputId = ns("dna_length"),
-               value = 6000,
-               min = 3,
-               max = 100000,
-               step = 3,
-               label = "Random DNA length"
-             ),
-             shiny::actionButton(
-               inputId = ns("generate_dna"),
-               label = "Generate random DNA", style = "margin-top: 18px;"
-             )
-             )
+      column(4, shiny::numericInput(
+        inputId = ns("dna_length"),
+        value = 6000,
+        min = 3,
+        max = 100000,
+        step = 3,
+        label = "Random DNA length"
+      ),
+      shiny::actionButton(
+        inputId = ns("generate_dna"),
+        label = "Generate random DNA", style = "margin-top: 18px;"
+      ))
     ),
     shiny::verbatimTextOutput(outputId = ns("peptide")) |>
       shiny::tagAppendAttributes(style = "white-space: pre-wrap;")
@@ -51,12 +48,6 @@ mod_script_server <- function(id){
         width = 600
       )
       })
-      observeEvent(input$generate_dna, {
-        dna(
-          enigma::generate_DNA_seq(input$dna_length)
-        )
-      })
-
       output$aminoacid_seq <- renderText({
         # Ensure input is not NULL and is longer than 2 characters
         if(is.null(input$DNA)){
@@ -71,7 +62,11 @@ mod_script_server <- function(id){
             enigma::codon_to_aa()
         }
       })
-
+      observeEvent(input$generate_dna, {
+        dna(
+          enigma::generate_DNA_seq(input$dna_length)
+        )
+      })
     })
 
 }
