@@ -48,7 +48,12 @@ mod_script_server <- function(id){
         width = 600
       )
       })
-      output$aminoacid_seq <- renderText({
+      observeEvent(input$generate_dna, {
+        dna(
+          enigma::generate_DNA_seq(input$dna_length)
+        )
+      })
+      output$peptide <- renderText({
         # Ensure input is not NULL and is longer than 2 characters
         if(is.null(input$DNA)){
           NULL
@@ -61,11 +66,6 @@ mod_script_server <- function(id){
             enigma::extracted_codons() |>
             enigma::codon_to_aa()
         }
-      })
-      observeEvent(input$generate_dna, {
-        dna(
-          enigma::generate_DNA_seq(input$dna_length)
-        )
       })
     })
 
